@@ -1,1 +1,0 @@
-C:\Users\tyzlu\IdeaProjects\FirstApp\build\classes\kotlin\main\AppKt.class;C:\Users\tyzlu\IdeaProjects\FirstApp\build\classes\kotlin\main\MainKt.class

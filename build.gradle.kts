@@ -18,10 +18,6 @@ dependencies {
     implementation(kotlin("io.rest-assured:rest-assured:4.4.0"))
 }
 
-dependencies {
-
-}
-
 tasks.test {
     useJUnitPlatform()
 }
