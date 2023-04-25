@@ -13,13 +13,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    implementation(kotlin("org.testng:testng:7.4.0"))
-    implementation(kotlin("io.rest-assured:rest-assured:4.4.0"))
+    testImplementation("io.rest-assured:rest-assured:4.4.0")
+    testImplementation("org.testng:testng:7.1.0")
+    implementation("com.google.code.gson:gson:2.8.8")
+    implementation(kotlin("stdlib"))
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useTestNG()
 }
 
 tasks.withType<KotlinCompile> {
