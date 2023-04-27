@@ -11,7 +11,7 @@ class BillRequest(private val requestSpecification: RequestSpecification) {
     fun PUT(bill: Bill): Response {
         val paymentJson = Gson().toJson(bill)
 
-        return requestSpecification
+        return requestSpecification.log().all()
             .contentType(ContentType.JSON)
             .accept("application/json")
             .body(paymentJson)
@@ -19,7 +19,7 @@ class BillRequest(private val requestSpecification: RequestSpecification) {
     }
 
     fun GET(): Response {
-        return requestSpecification
+        return requestSpecification.log().all()
             .contentType(ContentType.JSON)
             .`when`()
             .get()

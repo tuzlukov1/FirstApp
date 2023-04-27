@@ -12,11 +12,11 @@ class BillData {
 
     @DataProvider(name = "billForPayment")
     fun billForPayment(): Array<Bill> {
-        val currentDateTime = LocalDateTime.now()
-        val expiredDateTime = currentDateTime.minusDays(1)
-        val expiredDate = expiredDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
-        val featureDateTime = currentDateTime.plusDays(3)
-        val featureDate = featureDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
+//        val currentDateTime = LocalDateTime.now()
+//        val expiredDateTime = currentDateTime.minusDays(1)
+//        val expiredDate = expiredDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
+//        val featureDateTime = currentDateTime.plusDays(3)
+//        val featureDate = featureDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
 
         val comment = "Test payment"
         val amount = Amount("RUB", "1.0")
@@ -39,14 +39,7 @@ class BillData {
                 comment,
                 customFields,
                 customer,
-                expiredDate
-            ),
-            Bill(
-                amount,
-                comment,
-                customFields,
-                customer,
-                featureDate
+                "2025-12-10T09:02:00+03:00"
             )
         )
     }

@@ -7,7 +7,7 @@ import io.restassured.specification.RequestSpecification
 class Reject(private val requestSpecification: RequestSpecification) {
 
     fun POST(): Response {
-        return requestSpecification
+        return requestSpecification.log().all()
             .contentType(ContentType.JSON)
             .`when`()
             .post("/reject")

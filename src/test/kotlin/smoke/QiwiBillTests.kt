@@ -37,14 +37,15 @@ class QiwiBillTests {
     fun testCreateBill(bill: api.model.Bill) {
         val billInit = BillRequest(requestSpecification)
         val response: Response = billInit.PUT(bill)
+        response.prettyPrint()
         val billResponse = Gson().fromJson(response.body.asString(), BillResponse::class.java)
 
         assertThat(HttpStatus.OK_200).isEqualTo(response.statusCode)
 
         SoftAssertions().apply {
-            assertThat(InvoiceStatus.WAITING).isEqualTo(billResponse.status)
+            assertThat(InvoiceStatus.WAITING.toString()).isEqualTo(billResponse.status.value)
             assertThat(bill.amount.currency).isEqualTo(billResponse.amount.currency)
-            assertThat(bill.amount.value).isEqualTo(billResponse.amount.value)
+            assertThat(bill.amount.value.toDouble()).isEqualTo(billResponse.amount.value.toDouble())
             assertThat(bill.comment).isEqualTo(billResponse.comment)
             assertThat(bill.customFields.themeCode).isEqualTo(billResponse.customFields.themeCode)
         }.assertAll()
@@ -56,6 +57,7 @@ class QiwiBillTests {
     fun testCancelBill() {
         val reject = Reject(requestSpecification)
         val response: Response = reject.POST()
+        response.prettyPrint()
 
         assertThat(HttpStatus.OK_200).isEqualTo(response.statusCode)
     }
@@ -66,6 +68,7 @@ class QiwiBillTests {
     fun testCheckBillStatus() {
         val billRequest = BillRequest(requestSpecification)
         val response: Response = billRequest.GET()
+        response.prettyPrint()
         val rejectResponse = Gson().fromJson(response.body.asString(), BillResponse::class.java)
 
         SoftAssertions().apply {
