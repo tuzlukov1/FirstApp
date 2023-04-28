@@ -13,9 +13,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation("io.rest-assured:rest-assured:4.4.0")
-    testImplementation("org.testng:testng:7.1.0")
+    implementation("org.testng:testng:7.1.0")
+    implementation("io.rest-assured:rest-assured:4.4.0")
     implementation("com.google.code.gson:gson:2.8.8")
+    implementation("org.eclipse.jetty:jetty-server:9.4.0.M0")
+    testImplementation("org.assertj:assertj-core:3.23.1")
     implementation(kotlin("stdlib"))
 }
 
