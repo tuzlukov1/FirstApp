@@ -5,42 +5,48 @@ import api.model.Bill
 import api.model.CustomFields
 import api.model.Customer
 import org.testng.annotations.DataProvider
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class BillData {
 
     @DataProvider(name = "billForPayment")
-    fun billForPayment(): Array<Bill> {
-//        val currentDateTime = LocalDateTime.now()
-//        val expiredDateTime = currentDateTime.minusDays(1)
-//        val expiredDate = expiredDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
-//        val featureDateTime = currentDateTime.plusDays(3)
-//        val featureDate = featureDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
+    fun getBillForPayment(): Array<Bill> {
+        return arrayOf(
+            generatePositiveBill()
+        )
+    }
 
+    fun generatePositiveBill(): Bill {
         val comment = "Test payment"
-        val amount = Amount("RUB", "1.0")
+        val account = "454678"
+        val email = "test@example.com"
+        val phone = "78710009999"
+        val currency = "RUB"
+        val value = "1.0"
+        val paySourcesFilter = "qw"
+        val themeCode = "Yvan-YKaSh"
+        val yourParamKey1 = "yourParam1"
+        val yourParamValue1 = "64728940"
+        val yourParamKey2 = "yourParam2"
+        val yourParamValue2 = "order 678"
+        val expirationDateTime = "2025-12-10T09:02:00+03:00"
+        val amount = Amount("$currency", "$value")
         val customer = Customer(
-            "454678",
-            "test@example.com",
-            "78710009999"
+            "$account",
+            "$email",
+            "$phone"
         )
 
         val customFields = CustomFields(
-            "qw",
-            "Yvan-YKaSh",
-            "64728940",
-            "order 678"
+            "$paySourcesFilter",
+            "$themeCode",
+            hashMapOf(yourParamKey1 to yourParamValue1, yourParamKey2 to yourParamValue2)
         )
-
-        return arrayOf(
-            Bill(
-                amount,
-                comment,
-                customFields,
-                customer,
-                "2025-12-10T09:02:00+03:00"
-            )
+        return Bill(
+            amount,
+            comment,
+            customFields,
+            customer,
+            "$expirationDateTime"
         )
     }
 }

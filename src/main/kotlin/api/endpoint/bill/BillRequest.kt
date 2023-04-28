@@ -8,20 +8,20 @@ import io.restassured.specification.RequestSpecification
 
 class BillRequest(private val requestSpecification: RequestSpecification) {
 
-    fun PUT(bill: Bill): Response {
+    fun PUT(uuid: String,bill: Bill): Response {
         val paymentJson = Gson().toJson(bill)
 
-        return requestSpecification.log().all()
+        return requestSpecification
             .contentType(ContentType.JSON)
             .accept("application/json")
             .body(paymentJson)
-            .put()
+            .put("/$uuid")
     }
 
-    fun GET(): Response {
-        return requestSpecification.log().all()
+    fun GET(uuid: String): Response {
+        return requestSpecification
             .contentType(ContentType.JSON)
             .`when`()
-            .get()
+            .get("/$uuid")
     }
 }
